@@ -92,6 +92,33 @@ const deck = [
   {"number": 12, "effect": Effect.Bis},
   {"number": 10, "effect": Effect.Real_Estate_Agent},
   {"number": 10, "effect": Effect.Surveyor},
+];
+
+const n1 = [
+  {"requirements": [{"1": 6}], "first_points": 8, "other_points": 4},
+  {"requirements": [{"4": 2}], "first_points": 6, "other_points": 3},
+  {"requirements": [{"3": 3}], "first_points": 8, "other_points": 4},
+  {"requirements": [{"5": 2}], "first_points": 8, "other_points": 4},
+  {"requirements": [{"2": 4}], "first_points": 8, "other_points": 4},
+  {"requirements": [{"6": 2}], "first_points": 10, "other_points": 6},
+]
+
+const n2 = [
+  {"requirements": [{"1": 3}, {"6": 1}], "first_points": 11, "other_points": 6},
+  {"requirements": [{"4": 1}, {"1": 3}], "first_points": 9, "other_points": 5},
+  {"requirements": [{"3": 1}, {"6": 1}], "first_points": 8, "other_points": 4},
+  {"requirements": [{"4": 1}, {"5": 1}], "first_points": 9, "other_points": 5},
+  {"requirements": [{"3": 2}, {"4": 1}], "first_points": 12, "other_points": 7},
+  {"requirements": [{"5": 1}, {"2": 2}], "first_points": 10, "other_points": 6},
+]
+
+const n3 = [
+  {"requirements": [{"2": 1}, {"3": 1}, {"5": 1}], "first_points": 13, "other_points": 7},
+  {"requirements": [{"1": 1}, {"2": 2}, {"3": 1}], "first_points": 11, "other_points": 6},
+  {"requirements": [{"1": 1}, {"4": 1}, {"5": 1}], "first_points": 13, "other_points": 7},
+  {"requirements": [{"3": 1}, {"4": 1}], "first_points": 7, "other_points": 3},
+  {"requirements": [{"1": 1}, {"2": 1}, {"6": 1}], "first_points": 12, "other_points": 7},
+  {"requirements": [{"2": 1}, {"5": 1}], "first_points": 7, "other_points": 3},
 ]
 
 function App() {
