@@ -204,12 +204,10 @@ const Game = () => {
 		return (
 			<Grid item xs={4}>
 				<Box>
-					<Card sx={{ m: "0 auto", maxWidth: "13rem" }}>
-						<CardMedia sx={{ display: "flex", height: "6.2rem", justifyContent: "space-around", alignItems: "center" }}>
-							{EFFECT_ICON_MAP.get(stack[index].effect)}
-						</CardMedia>
-						<Divider />
-						<Box sx={{ ml: "1.2rem", display: "flex", justifyContent: "center" }}>
+					<Card sx={{ m: "0 auto", maxWidth: "13rem", display: "flex", justifyContent: "space-around", alignItems: "center" }}>
+						{EFFECT_ICON_MAP.get(stack[index].effect)}
+						<Divider orientation="vertical" flexItem />
+						<Box sx={{ display: "flex", justifyContent: "center" }}>
 							<Typography variant="h2">{stack[index+1].number}</Typography>
 							{EFFECT_MINI_ICON_MAP.get(stack[index+1].effect)}
 						</Box>
@@ -248,19 +246,19 @@ const Game = () => {
 
   return (
     <Grid container marginTop="0.5rem">
-			{stackOne && displayCards(stackOne)}
-			{stackTwo && displayCards(stackTwo)}
-			{stackThree && displayCards(stackThree)}
-			<Grid item xs={12}>
-				<Divider sx={{ m: "0.1rem", visibility: "hidden" }} />
-			</Grid>
 			{bonusOne && displayBonus(bonusOne, "n1")}
 			{bonusTwo && displayBonus(bonusTwo, "n2")}
 			{bonusThree && displayBonus(bonusThree, "n3")}
 			<Grid item xs={12}>
 				<Divider sx={{ m: "0.1rem", visibility: "hidden" }} />
 			</Grid>
-			<Grid item xs={12} sx={{ display: "flex", justifyContent: "space-evenly" }}>
+			{stackOne && displayCards(stackOne)}
+			{stackTwo && displayCards(stackTwo)}
+			{stackThree && displayCards(stackThree)}
+			<Grid item xs={12}>
+				<Divider sx={{ m: "0.1rem", visibility: "hidden" }} />
+			</Grid>
+			<Grid item xs={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 				<Button
 					variant="outlined"
 					color="secondary"
