@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, CardMedia, Divider, Grid, SvgIconProps, Typography } from "@mui/material";
+import { Button, Card, CardMedia, Divider, Grid, SvgIconProps, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import ConstructionIcon from '@mui/icons-material/Construction';
 import FenceIcon from '@mui/icons-material/Fence';
@@ -8,7 +8,7 @@ import PoolIcon from '@mui/icons-material/Pool';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { Box } from "@mui/system";
 
-interface Card {
+interface GameCard {
   "number": number
   "effect": Effect
 }
@@ -51,7 +51,7 @@ const EFFECT_MINI_ICON_MAP = new Map<Effect, React.ReactElement<SvgIconProps>>([
 	[Effect.Bis, <MarkunreadMailboxIcon sx={{ color: "#e03838" }}/>]
 ]);
 
-const DECK: Card[] = [
+const DECK: GameCard[] = [
   {"number": 7, "effect": Effect.Real_Estate_Agent},
   {"number": 10, "effect": Effect.Pool_Manufacturer},
   {"number": 6, "effect": Effect.Temp_Agency},
@@ -164,9 +164,9 @@ const n3: BonusCard[] = [
 
 const Game = () => {
   const [index, setIndex] = useState(0);
-  const [stackOne, setStackOne] = useState<Card[]>();
-  const [stackTwo, setStackTwo] = useState<Card[]>();
-  const [stackThree, setStackThree] = useState<Card[]>();
+  const [stackOne, setStackOne] = useState<GameCard[]>();
+  const [stackTwo, setStackTwo] = useState<GameCard[]>();
+  const [stackThree, setStackThree] = useState<GameCard[]>();
   const [bonusOne, setBonusOne] = useState<BonusCard>();
   const [bonusTwo, setBonusTwo] = useState<BonusCard>();
   const [bonusThree, setBonusThree] = useState<BonusCard>();
@@ -176,9 +176,9 @@ const Game = () => {
 		selectRandomBonusCards();
   }, []);
 
-  const shuffleCards = (deck: Card[]) => {
+  const shuffleCards = (deck: GameCard[]) => {
     let last_index = deck.length;
-    let temp: Card;
+    let temp: GameCard;
     let random: number;
   
     while (last_index > 0) {
@@ -200,7 +200,7 @@ const Game = () => {
 		setBonusThree(n3[Math.floor(Math.random() * 6)]);
 	};
 
-	const displayCards = (stack: Card[]) => {
+	const displayCards = (stack: GameCard[]) => {
 		return (
 			<Grid item xs={4}>
 				<Box>
