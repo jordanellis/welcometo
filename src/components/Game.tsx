@@ -1,4 +1,4 @@
-import { Button, Card, CardMedia, Divider, Grid, SvgIconProps, Typography } from "@mui/material";
+import { Button, Card, Divider, Grid, SvgIconProps, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import ConstructionIcon from '@mui/icons-material/Construction';
 import FenceIcon from '@mui/icons-material/Fence';
