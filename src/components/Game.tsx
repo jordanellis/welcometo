@@ -239,25 +239,27 @@ const Game = () => {
     for (const x of Array(number)) {
       arr.push(x);
     }
+    const BOX_SIZE = screenLargerThanSM ? "2rem" : "1rem";
     return (
       <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <Typography sx={{ textAlign: "center", mr: "0.25rem" }}>{requirement + " = "}</Typography>
+        <Typography variant={screenLargerThanSM ? "h4" : "body1"} sx={{ textAlign: "center", mr: "0.25rem" }}>{requirement + " = "}</Typography>
         {arr.map((num, i) => (
           <Box
             key={i}
-            sx={{ mt: "0.25rem", border: "1px solid", borderColor: "primary.text", width: "1rem", height: "1rem" }}
+            sx={{ mt: "0.25rem", border: "1px solid", borderColor: "primary.text", width: BOX_SIZE, height: BOX_SIZE }}
           />
         ))}
-        <Typography sx={{ textAlign: "center" }}>{"'s"}</Typography>
+        <Typography variant={screenLargerThanSM ? "h4" : "body1"} sx={{ textAlign: "center" }}>{"'s"}</Typography>
       </Box>
     );
   }
 
 	const displayBonus = (bonus: BonusCard, bonusName: string) => {
+    const DISP_WID = screenLargerThanSM ? "18rem" : "10rem";
 		return (
 			<Grid item xs={4}>
-				<Card sx={{ m: "0 auto", maxWidth: "10rem" }} onClick={() => {bonus.completed = true}}>
-					<Typography sx={{ textAlign: "center" }}>{bonusName}</Typography>
+				<Card sx={{ m: "0 auto", maxWidth: DISP_WID }} onClick={() => {bonus.completed = true}}>
+					<Typography variant={screenLargerThanSM ? "h3" : "body1"} sx={{ textAlign: "center" }}>{bonusName}</Typography>
 					<Divider />
 					{bonus.requirements.map((req, i) => (
 						<Box key={i}>
@@ -271,9 +273,14 @@ const Game = () => {
 					))}
 					<Divider />
 					<Box sx={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
-						{bonus?.completed ? <Typography variant="h6">X</Typography> : <Typography variant="h6">{bonus?.first_points}</Typography>}
-						<Typography variant="caption">{" | "}</Typography>
-						<Typography variant="h6">{bonus?.other_points}</Typography>
+						{bonus?.completed
+            ? 
+              <Typography variant={screenLargerThanSM ? "h3" : "h6"}>X</Typography>
+            : 
+              <Typography variant={screenLargerThanSM ? "h3" : "h6"}>{bonus?.first_points}</Typography>
+            }
+						<Typography variant={screenLargerThanSM ? "h5" : "caption"}>{" | "}</Typography>
+						<Typography variant={screenLargerThanSM ? "h3" : "h6"}>{bonus?.other_points}</Typography>
 					</Box>
 				</Card>
 			</Grid>
