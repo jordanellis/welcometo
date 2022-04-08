@@ -7,7 +7,6 @@ import ParkIcon from '@mui/icons-material/Park';
 import PoolIcon from '@mui/icons-material/Pool';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { Box } from "@mui/system";
-import { arrayBuffer } from "stream/consumers";
 
 interface GameCard {
   "number": number
