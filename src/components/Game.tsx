@@ -1,4 +1,4 @@
-import { Button, Card, Divider, Grid, SvgIconProps, Typography } from "@mui/material";
+import { Button, Card, Divider, Grid, SvgIconProps, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import ConstructionIcon from '@mui/icons-material/Construction';
 import FenceIcon from '@mui/icons-material/Fence';
@@ -7,6 +7,7 @@ import ParkIcon from '@mui/icons-material/Park';
 import PoolIcon from '@mui/icons-material/Pool';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { Box } from "@mui/system";
+import { arrayBuffer } from "stream/consumers";
 
 interface GameCard {
   "number": number
@@ -40,6 +41,15 @@ const EFFECT_ICON_MAP = new Map<Effect, React.ReactElement<SvgIconProps>>([
 	[Effect.Pool_Manufacturer, <PoolIcon sx={{ color: "#2f9ac4", fontSize: "6rem" }}/>],
 	[Effect.Temp_Agency, <ConstructionIcon sx={{ color: "#eb7734", fontSize: "6rem" }}/>],
 	[Effect.Bis, <MarkunreadMailboxIcon sx={{ color: "#e03838", fontSize: "6rem" }}/>]
+]);
+
+const EFFECT_LARGE_ICON_MAP = new Map<Effect, React.ReactElement<SvgIconProps>>([
+	[Effect.Landscaper, <ParkIcon sx={{ color: "#178735", fontSize: "10rem" }}/>],
+	[Effect.Surveyor, <FenceIcon sx={{ color: "#d0d0d0", fontSize: "10rem" }}/>],
+	[Effect.Real_Estate_Agent, <TrendingUpIcon sx={{ color: "#c23fd1", fontSize: "10rem" }}/>],
+	[Effect.Pool_Manufacturer, <PoolIcon sx={{ color: "#2f9ac4", fontSize: "10rem" }}/>],
+	[Effect.Temp_Agency, <ConstructionIcon sx={{ color: "#eb7734", fontSize: "10rem" }}/>],
+	[Effect.Bis, <MarkunreadMailboxIcon sx={{ color: "#e03838", fontSize: "10rem" }}/>]
 ]);
 
 const EFFECT_MINI_ICON_MAP = new Map<Effect, React.ReactElement<SvgIconProps>>([
@@ -163,6 +173,8 @@ const n3: BonusCard[] = [
 ];
 
 const Game = () => {
+	const theme = useTheme();
+	const screenLargerThanSM = useMediaQuery(theme.breakpoints.up("md"));
   const [index, setIndex] = useState(0);
   const [stackOne, setStackOne] = useState<GameCard[]>();
   const [stackTwo, setStackTwo] = useState<GameCard[]>();
@@ -201,14 +213,19 @@ const Game = () => {
 	};
 
 	const displayCards = (stack: GameCard[]) => {
+    const [ICON_MAP, MAX_WID] = screenLargerThanSM
+      ?
+        [EFFECT_LARGE_ICON_MAP, "21rem"]
+      : 
+        [EFFECT_ICON_MAP, "13rem"];
 		return (
 			<Grid item xs={4}>
 				<Box>
-					<Card sx={{ m: "0 auto", maxWidth: "13rem", display: "flex", justifyContent: "space-around", alignItems: "center" }}>
-						{EFFECT_ICON_MAP.get(stack[index].effect)}
+					<Card sx={{ m: "0 auto", maxWidth: MAX_WID, display: "flex", justifyContent: "space-around", alignItems: "center" }}>
+						{ICON_MAP.get(stack[index].effect)}
 						<Divider orientation="vertical" flexItem />
 						<Box sx={{ display: "flex", justifyContent: "center" }}>
-							<Typography variant="h2">{stack[index+1].number}</Typography>
+							<Typography variant={screenLargerThanSM ? "h1" : "h2"}>{stack[index+1].number}</Typography>
 							{EFFECT_MINI_ICON_MAP.get(stack[index+1].effect)}
 						</Box>
 					</Card>
@@ -217,20 +234,39 @@ const Game = () => {
 		);
 	};
 
+  const displayBonusBoxes = (requirement: number, number: number) => {
+    let arr = [];
+    for (const x of Array(number)) {
+      arr.push(x);
+    }
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Typography sx={{ textAlign: "center", mr: "0.25rem" }}>{requirement + " = "}</Typography>
+        {arr.map((num, i) => (
+          <Box
+            key={i}
+            sx={{ mt: "0.25rem", border: "1px solid", borderColor: "primary.text", width: "1rem", height: "1rem" }}
+          />
+        ))}
+        <Typography sx={{ textAlign: "center" }}>{"'s"}</Typography>
+      </Box>
+    );
+  }
+
 	const displayBonus = (bonus: BonusCard, bonusName: string) => {
 		return (
 			<Grid item xs={4}>
-				<Card sx={{ m: "0 auto", maxWidth: "8rem" }} onClick={() => {bonus.completed = true}}>
+				<Card sx={{ m: "0 auto", maxWidth: "10rem" }} onClick={() => {bonus.completed = true}}>
 					<Typography sx={{ textAlign: "center" }}>{bonusName}</Typography>
 					<Divider />
 					{bonus.requirements.map((req, i) => (
 						<Box key={i}>
-							<Typography sx={{ textAlign: "center" }}>{req["6"] && req["6"] + " size 6's"}</Typography>
-							<Typography sx={{ textAlign: "center" }}>{req["5"] && req["5"] + " size 5's"}</Typography>
-							<Typography sx={{ textAlign: "center" }}>{req["4"] && req["4"] + " size 4's"}</Typography>
-							<Typography sx={{ textAlign: "center" }}>{req["3"] && req["3"] + " size 3's"}</Typography>
-							<Typography sx={{ textAlign: "center" }}>{req["2"] && req["2"] + " size 2's"}</Typography>
-							<Typography sx={{ textAlign: "center" }}>{req["1"] && req["1"] + " size 1's"}</Typography>
+							{req["6"] && displayBonusBoxes(req["6"], 6)}
+              {req["5"] && displayBonusBoxes(req["5"], 5)}
+              {req["4"] && displayBonusBoxes(req["4"], 4)}
+              {req["3"] && displayBonusBoxes(req["3"], 3)}
+              {req["2"] && displayBonusBoxes(req["2"], 2)}
+              {req["1"] && displayBonusBoxes(req["1"], 1)}
 						</Box>
 					))}
 					<Divider />
@@ -244,19 +280,21 @@ const Game = () => {
 		);
 	};
 
+  const DIVIDER_SPACING = screenLargerThanSM ? "3rem" : "0.1rem";
+
   return (
     <Grid container marginTop="0.5rem">
 			{bonusOne && displayBonus(bonusOne, "n1")}
 			{bonusTwo && displayBonus(bonusTwo, "n2")}
 			{bonusThree && displayBonus(bonusThree, "n3")}
 			<Grid item xs={12}>
-				<Divider sx={{ m: "0.1rem", visibility: "hidden" }} />
+				<Divider sx={{ m: DIVIDER_SPACING, visibility: "hidden" }} />
 			</Grid>
 			{stackOne && displayCards(stackOne)}
 			{stackTwo && displayCards(stackTwo)}
 			{stackThree && displayCards(stackThree)}
 			<Grid item xs={12}>
-				<Divider sx={{ m: "0.1rem", visibility: "hidden" }} />
+				<Divider sx={{ m: DIVIDER_SPACING, visibility: "hidden" }} />
 			</Grid>
 			<Grid item xs={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 				<Button
@@ -274,11 +312,20 @@ const Game = () => {
 				<Button
 					variant="outlined"
 					color="secondary"
-					sx={{ width: "10rem" }}
+					sx={{ width: "5rem", fontSize: "1.3rem", pt: 0, pb: 0, borderBottomRightRadius: 0, borderTopRightRadius: 0 }}
+					disabled={index <= 0}
+					onClick={() => setIndex(index-1)}
+				>
+					{"<"}
+				</Button>
+        <Button
+					variant="outlined"
+					color="secondary"
+					sx={{ width: "5rem", fontSize: "1.3rem", pt: 0, pb: 0, borderBottomLeftRadius: 0, borderTopLeftRadius: 0 }}
 					disabled={index >= 25}
 					onClick={() => setIndex(index+1)}
 				>
-					Flip
+					{">"}
 				</Button>
 			</Grid>
 		</Grid>
