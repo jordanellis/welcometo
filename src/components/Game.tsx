@@ -253,11 +253,11 @@ const Game = () => {
     );
   }
 
-	const displayBonus = (bonus: BonusCard, bonusName: string) => {
+	const displayBonus = (bonus: BonusCard, bonusName: string, setBonus: React.Dispatch<React.SetStateAction<BonusCard | undefined>>) => {
     const DISP_WID = screenLargerThanSM ? "18rem" : "10rem";
 		return (
 			<Grid item xs={4}>
-				<Card sx={{ m: "0 auto", maxWidth: DISP_WID }} onClick={() => {bonus.completed = true}}>
+				<Card sx={{ m: "0 auto", maxWidth: DISP_WID, textAlign: "center" }} >
 					<Typography variant={screenLargerThanSM ? "h3" : "body1"} sx={{ textAlign: "center" }}>{bonusName}</Typography>
 					<Divider />
 					{bonus.requirements.map((req, i) => (
@@ -274,13 +274,25 @@ const Game = () => {
 					<Box sx={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
 						{bonus?.completed
             ? 
-              <Typography variant={screenLargerThanSM ? "h3" : "h6"}>X</Typography>
+              <Typography variant={screenLargerThanSM ? "h3" : "h6"} sx={{ textDecoration: "line-through", color: "#dfcfb240" }}>{bonus?.first_points}</Typography>
             : 
               <Typography variant={screenLargerThanSM ? "h3" : "h6"}>{bonus?.first_points}</Typography>
             }
 						<Typography variant={screenLargerThanSM ? "h5" : "caption"}>{" | "}</Typography>
 						<Typography variant={screenLargerThanSM ? "h3" : "h6"}>{bonus?.other_points}</Typography>
 					</Box>
+          <Button
+            disabled={bonus?.completed}
+            onClick={() => {
+              bonus.completed = true;
+              setBonus(JSON.parse(JSON.stringify(bonus)));
+            }}
+            color="secondary"
+            variant="contained"
+            sx={{ my: 1 }}
+          >
+            Complete
+          </Button>
 				</Card>
 			</Grid>
 		);
@@ -290,9 +302,9 @@ const Game = () => {
 
   return (
     <Grid container marginTop="0.5rem">
-			{bonusOne && displayBonus(bonusOne, "n1")}
-			{bonusTwo && displayBonus(bonusTwo, "n2")}
-			{bonusThree && displayBonus(bonusThree, "n3")}
+			{bonusOne && displayBonus(bonusOne, "n1", setBonusOne)}
+			{bonusTwo && displayBonus(bonusTwo, "n2", setBonusTwo)}
+			{bonusThree && displayBonus(bonusThree, "n3", setBonusThree)}
 			<Grid item xs={12}>
 				<Divider sx={{ m: DIVIDER_SPACING, visibility: "hidden" }} />
 			</Grid>
