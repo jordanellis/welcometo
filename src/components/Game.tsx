@@ -289,10 +289,7 @@ const Bonus = ({
     );
   };
 
-  const displayAdvancedBonus = ({
-    requirement,
-    icon: Icon = Box,
-  }: AdvancedBonusCard) => {
+  const displayAdvancedBonus = ({ requirement }: AdvancedBonusCard) => {
     return (
       <Box
         sx={{

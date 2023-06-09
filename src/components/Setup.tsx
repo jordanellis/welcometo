@@ -3,12 +3,9 @@ import {
   Button,
   Checkbox,
   FormControlLabel,
-  IconButton,
   Radio,
   RadioGroup,
-  Tooltip,
 } from "@mui/material";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
