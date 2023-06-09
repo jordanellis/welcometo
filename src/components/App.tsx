@@ -1,21 +1,24 @@
-import React from 'react';
-import { Box, CssBaseline } from '@mui/material';
+import { Box, CssBaseline } from "@mui/material";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Game from './Game';
+import Game from "./Game";
+import Rules from "./Rules";
+import Menu from "./Menu";
+import Setup from "./Setup";
 
-const App = () => {
+export default function App() {
   return (
-    <Box>
+    <>
       <CssBaseline />
-			<BrowserRouter>
-				<Box sx={{ margin: "0 auto", overflowX: "hidden" }}>
-					<Routes>
-						<Route path="/" element={<Game />} />
-					</Routes>
-				</Box>
-			</BrowserRouter>
-    </Box>
+      <BrowserRouter>
+        <Box sx={{ margin: "0 auto", overflowX: "hidden", height: "100%" }}>
+          <Routes>
+            <Route path="/" element={<Menu />} />
+            <Route path="/setup" element={<Setup />} />
+            <Route path="/rules" element={<Rules />} />
+            <Route path="/game" element={<Game />} />
+          </Routes>
+        </Box>
+      </BrowserRouter>
+    </>
   );
-};
-
-export default App;
+}
