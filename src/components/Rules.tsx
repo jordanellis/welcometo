@@ -252,37 +252,180 @@ export default function Rules() {
       </Accordion>
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Advanced variant</Typography>
+          <Typography>Advanced variants</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Additional City Plans These goals can be added to the basic version.
-            The same rules apply to them. List Of Objectives: To fulfill this
-            City Plan, all houses must be built on the required street. To
-            fulfill this City Plan, the first and last house of each street must
-            be built. To fulfill this City Plan, all of the parks AND all of the
-            pools on the required street must be built. To fulfill this City
-            Plan, 7 temps must be hired. To fulfill this City Plan, two streets
-            must have all of the parks OR all of the pools built. To fulfill
-            this City Plan, the player must build all of the parks, all of the
-            pools, and one roundabout in the same street. To fulfill this City
-            Plan, 5 duplicate houses&apos; numers (bis) must be built on the
-            same street. Reminder: When an estate or a house has been used for a
-            Plan, it cannot fulfill another City Plan. The player marks out the
-            fence above each house to indicate it has already fulfilled a City
-            Plan. However, a pool used for a City Plan does not invalidate its
-            corresponding house for another plan. Roundabout Before or after
-            building a house and activating an effect on their turn, a player
-            can choose to create one of the two available roundabouts. Choose an
-            empty house&apos;s box, draw a circle and a dot inside it where a
-            house number would go, and then build estate fences to the left and
-            the right of the roundabout. The roundabout divides the street in
-            two. Therefore, house numbers may start over directly to the right
-            of the roundabout. Players can use numbers 0-17 to the left of a
-            roundabout, while also using numbers 0-17 on the other side. Cross
-            off the top-most space on the roundabout column. The first costs 3
-            points and the second costs 5 points. At the end of the game,
-            subtract the smallest, unchecked number from the final score.
+            <h2>Additional City Plans</h2>
+            <p>
+              These are additional goals that can be added to the basic version.
+              The same rules apply to them.
+            </p>
+            <h2>Roundabout</h2>
+            <p>
+              Before or after building a house and activating an effect on their
+              turn, a player can choose to create one of the two available
+              roundabouts. Choose an empty house&apos;s box, draw a circle and a
+              dot inside it where a house number would go, and then build estate
+              fences to the left and the right of the roundabout.
+            </p>
+            <p>
+              The roundabout divides the street in two. Therefore, house numbers
+              may start over directly to the right of the roundabout. Players
+              can use numbers 0-17 to the left of a roundabout, while also using
+              numbers 0-17 on the other side.
+            </p>
+            <p>
+              Cross off the top-most space on the roundabout column. The first
+              costs 3 points and the second costs 5 points.
+            </p>
+            <p>
+              At the end of the game, subtract the smallest, unchecked number
+              from the final score.
+            </p>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Spring Rules</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            <p>
+              <strong>
+                While collecting Easter Eggs can be a lot of fun, it can also be
+                tricky if they are well hidden
+              </strong>
+            </p>
+            <p>
+              You are trying to collect as many Easter Eggs as possible. You
+              have to be clever to get them!
+            </p>
+            <p>
+              In order to collect an egg, you must fill the house using the
+              loops in specific numbers such as 0, 6, 8, 9, 10, and 16. If you
+              fill the house with a number containing a 6 or 9, you can only
+              collect one egg. If using a number with a 0 or an 8, you can
+              collect up to 2 eggs.
+            </p>
+            <p>
+              At the end of the game, if you collected 6/10/12/16 eggs, you
+              score 5/10/20/35 points respectively.
+            </p>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Summer Rules</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            <p>
+              <strong>Own the best ice cream truck in the neighborhood.</strong>
+            </p>
+            <p>
+              The ice cream truck goes down each street only once, and therefore
+              all missed ice cream orders are lost.
+            </p>
+            <p>
+              When you write a number in a house, draw a line from the ice cream
+              truck to that house. If the ice cream truck ends its trip in front
+              of a house with an ice cream cone, circle it and then, cross off
+              all other ice cream cones on the truck&apos;s trip that were
+              passed.
+            </p>
+            <p>
+              As soon as you circle or cross off the last ice cream cone of one
+              street, you earn a bonus of 1 point for each ice cream cone
+              circled in the street. All other players must cross off this
+              bonus, but can keep selling ice cream cones on that street.
+            </p>
+            <p>
+              When you start numbering the 3rd street, pick the ice cream truck
+              you want from either side and cross off the other. Only one bonus
+              applies for this street.
+            </p>
+            <p>
+              You earn 1 point for <strong>each scoop</strong> of ice cream
+              circled during the game.
+            </p>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Halloween Rules</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            <p>
+              <strong>
+                It&apos;s Halloween and time to go Trick or Treating in the
+                Neighborhood!
+              </strong>
+            </p>
+            <p>
+              Some houses give out great candy, while other houses are just in
+              it to scare you. You&apos;re out trick or treating, trying to find
+              the best scares and get the most candy.
+            </p>
+            <p>
+              Every time you fill a number in a house displaying candy or a
+              ghost, you choose one to circle.
+            </p>
+            <p>
+              When you reach 4/6/9 Candy, you may announce it and receive
+              5/10/15 points respectively. If the points have already been taken
+              by another player, you can receive points of a lower level still
+              available. All other players must cross off the amount received.
+              If multiple players finish simultaneously, they score the same
+              points. But you can only score once, so you can press your luck
+              and go for 9. However, once someone else claims it, it&apos;s no
+              longer available!
+            </p>
+            <p>
+              When you reach 4/6/9 Ghosts, you may choose the corresponding
+              trick. If the trick has already been taken by another player, you
+              can choose a trick of a lower level still available. Announce your
+              trick and check off the ghost box. All other players cross it off
+              as well. The trick happens in addition to any action taken this
+              turn. Only one trick per player, so you can press your luck and go
+              for a higher trick, and when someone claims one, it&apos;s gone
+              for everyone!
+            </p>
+            <p>The following are what ghosts can gain you:</p>
+            <ul>
+              <li>4 ghosts: 1 pool or 1 park.</li>
+              <li>6 ghosts: 2 pools or 1 bis without taking a penalty.</li>
+              <li>9 ghosts: 3 parks or 2 bis without taking a penalty.</li>
+            </ul>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Winter Rules</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            <p>
+              <strong>It&apos;s Christmas Time!</strong>
+            </p>
+            <p>
+              People love looking at all of the pretty lights, but no one likes
+              that one house on the block that doesn&apos;t participate.
+            </p>
+            <p>
+              You are trying to make the longest stretch of consecutive numbers
+              on each street. At the end of the game, draw a string of Christmas
+              lights connecting all consecutive numbers on each of your streets.
+              Score points for your longest string of Christmas lights on each
+              street! You&apos;ll score as many points as houses that are
+              connected by this string.
+            </p>
+            <p>Bis counts as consecutive numbers!</p>
           </Typography>
         </AccordionDetails>
       </Accordion>
